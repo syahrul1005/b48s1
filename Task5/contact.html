@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" href="assets/css/all.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/style-form.css">
+    <script src="https://kit.fontawesome.com/700d7e38d3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <ul>
+                <li><a href="index.html"><img src="assets/images/dw.png"></a></li>
+                <li><a href="index.html"><b>Home</b></a></li>
+                <li><a href="index-project.html">Blog</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="contact.html">Contact Me</a>
+        </div>
+    </nav>
+
+    <h1>GET IN TOUCH</h1>
+    
+    <form onsubmit="submitData(event)">
+        <div class="form-container">
+            <div>
+                <label>Name</label>
+                <input id="name">
+            </div>
+            <div>
+                <label>Email</label>
+                <input id="email">
+            </div>
+            <div>
+                <label>Phone Number</label>
+                <input id="phone-number">
+            </div>
+            <div>
+                <label>Subject</label>
+                <select id="subject">
+                    <option value="" hidden></option>
+                    <option>Let's Talk</option>
+                    <option>Let's Meet</option>
+                    <option>Call Me</option>
+                </select>
+            </div>
+            <div>
+                <label>Your Message</label>
+                <textarea id="message"></textarea>
+            </div>
+            <div class="button1">
+                <button>Submit</button>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="assets/js/form.js"></script>
+</html>
