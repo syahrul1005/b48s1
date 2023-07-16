@@ -1,0 +1,232 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* @media only screen and (min-width : 1051px) {
+    .preview-project {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 20px;
+    }
+}
+
+@media only screen and (max-width : 1050px) {
+    .preview-project {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 20px;
+    }
+} */
+
+@media only screen and (max-width : 650px) {
+    .form-container {
+        display: flex;
+        justify-content: center;
+    }
+    #form-upload {
+        width: 80%;
+    }
+    /* .preview-project {
+        display: grid;
+        grid-template-columns: auto;
+        gap: 20px;
+    } */
+}
+
+h1 {
+    margin: 50px 0 30px;
+    text-align: center;
+}
+
+/* form upload project */
+
+.form-container {
+    width: 350px;
+    padding: 5px;
+}
+
+/* .form-container */
+
+.form-container div input, select, textarea {
+    border-radius: 4px;
+    box-shadow: 10px 10px 50px rgb(194, 188, 188);
+    border-style: none;
+}
+
+.form-container label {
+    font-weight: bold;
+}
+
+/* .form-container #form-upload */
+
+.projectName {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.projectName input {
+    height: 30px;
+}
+
+.projectDate {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.projectDate input {
+    height: 30px;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.description textarea {
+    height: 80px;
+}
+
+/* #form-upload .technologies */
+
+.technologies {
+    padding-top: 20px;
+}
+
+/* .technologies */
+
+.techList1 label,.techList2 label {
+    font-weight: normal;
+}
+
+.techList1 {
+    display: flex;
+    gap: 50px;
+}
+
+.techList2 {
+    display: flex;
+    gap: 61px;
+}
+
+/* #form-upload .projectImg */
+
+.projectImg {
+    padding-top: 20px;
+}
+
+.uploadBox label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    height: 30px;
+    cursor: pointer;
+}
+.uploadBox label p {
+    background-color: #f4f3f3ac;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+.uploadBox label i {
+    padding: 0 10px;
+}
+
+/* #form-upload .button1 */
+
+.button1 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.button1 button {
+    background-color: black;
+    color: white;
+    padding: 2px 20px; 
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+/* preview project */
+.preview-project {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.previewProject-container {
+    background-color: white;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* .previewProject-container */
+.preImage { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preImage img {
+    max-width: 300px;
+    max-height: 200px;
+    border-radius: 5px;
+}
+
+.preTitle {
+    font-weight: bold;
+}
+
+.preDuration {
+    color: grey;
+    margin: -2px 0 10px;
+    font-size: 11px;
+}
+
+.preDescription {
+    text-align: justify;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.preTechnologies {
+    display: flex;
+    font-size: larger;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.button2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.button2 a  {
+    text-decoration: none;
+    color: white;
+}
+
+.button2 button {
+    background-color: black;
+    color: white;
+    width: 100%;
+    padding: 2px 20px; 
+    border-radius: 5px;
+    cursor: pointer;
+}

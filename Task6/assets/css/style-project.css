@@ -1,18 +1,49 @@
 .main-container {
-    width: 800px;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* @media only screen and (min-width : 1051px) {
+    .preview-project {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 20px;
+    }
+}
+
+@media only screen and (max-width : 1050px) {
+    .preview-project {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 20px;
+    }
+} */
+
+@media only screen and (max-width : 650px) {
+    .form-container {
+        display: flex;
+        justify-content: center;
+    }
+    #form-upload {
+        width: 80%;
+    }
+    /* .preview-project {
+        display: grid;
+        grid-template-columns: auto;
+        gap: 20px;
+    } */
 }
 
 h1 {
-    text-align: center;
     margin: 50px 0 30px;
+    text-align: center;
 }
 
 /* form upload project */
 
 .form-container {
-    width: 400px;
-    margin: auto;
+    width: 350px;
     padding: 5px;
 }
 
@@ -26,7 +57,6 @@ h1 {
 
 .form-container label {
     font-weight: bold;
-    padding-top: 20px;
 }
 
 /* .form-container #form-upload */
@@ -34,6 +64,7 @@ h1 {
 .projectName {
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
 }
 
 .projectName input {
@@ -42,19 +73,18 @@ h1 {
 
 .projectDate {
     display: flex;
-    width: 400px;
+    justify-content: space-between;
     padding-top: 20px;
-    gap: 32px;
 }
 
 .projectDate input {
     height: 30px;
-    width: 180px;
 }
 
 .description {
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
 }
 
 .description textarea {
@@ -89,10 +119,27 @@ h1 {
     padding-top: 20px;
 }
 
-.projectImg input[type=file] {
-    width: 390px;
-    padding: 5px;
-    background: #fff;
+.uploadBox label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    height: 30px;
+    cursor: pointer;
+}
+.uploadBox label p {
+    background-color: #f4f3f3ac;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+.uploadBox label i {
+    padding: 0 10px;
 }
 
 /* #form-upload .button1 */
@@ -113,13 +160,10 @@ h1 {
 }
 
 /* preview project */
-
 .preview-project {
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: auto;
-    width: 1000px;
     gap: 20px;
 }
 

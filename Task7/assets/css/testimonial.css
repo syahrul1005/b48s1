@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.container h1 {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: fit-content;
+    padding: 20px;
+    gap: 20px;
+}
+
+.testimonial {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px rgb(194, 188, 188);
+}
+
+.testimonial img {
+    object-fit: cover;
+    width: 250px;
+    max-height: 165px;
+}
+
+.quotes {
+    width: 75%;
+    height: 70px;
+    font-style: italic;
+    font-size: 0.75em;
+    padding: 10px 0 0;
+}
+
+.author {
+    text-align: end;
+    font-size: 0.75em;
+    padding: 10px 0 0;
+}

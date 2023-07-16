@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <link rel="stylesheet" href="assets/css/all.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/style-project.css">
+    <script src="https://kit.fontawesome.com/700d7e38d3.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav class="navTop">
+        <div class="nav-left">
+            <ul>
+                <li><a href="index.html"><img src="assets/images/dw.png"></a></li>
+                <li><a class="navWeb" href="index.html">Home</a></li>
+                <li><a class="navWeb" href="index-project.html"><b>Blog</b></a></li>
+                <li><a class="navWeb" href="testimonial.html">Testimonial</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="contact.html">Contact Me</a>
+            <button onclick="openNavBot()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    <div class="navBot" id="navBot">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="navActive"><a href="index-project.html">Blog</a></li>
+            <li><a href="contact.html">Contact Me</a></li>
+            <li><a href="testimonial.html">Testimonial</a></li>
+        </ul>
+    </div>
+
+<div class="main-container">
+<div class="main-containerTop">
+    <h1>ADD MY PROJECT</h1>
+<!-- form upload project -->
+
+    <div class="form-container">
+        <form id="form-upload" onsubmit="addBlog(event)">
+            <div class="projectName">
+                <label for="name">Project Name</label>
+                <input id="name" type="text">
+            </div>
+            <div class="projectDate">
+                <div class="startDate">
+                    <label for="startDate">Start Date</label><br>
+                    <input id="startDate" type="date">
+                </div>
+                <div class="endDate">
+                    <label for="endDate">End Date</label><br>
+                    <input id="endDate" type="date">
+                </div>
+            </div>
+            <div class="description">
+                <label for="description">Description</label>
+                <textarea id="description"></textarea>
+            </div>
+            <div class="technologies">
+                <label>Technologies</label>
+                <div class="techList1">
+                    <div>
+                        <input id="nodejs" type="checkbox">
+                        <label for="nodejs">Node Js</label>
+                    </div>
+                    <div>
+                        <input id="reactjs" type="checkbox">
+                        <label for="reactjs">React Js</label>
+                    </div>
+                </div>
+                <div class="techList2">
+                    <div>
+                        <input id="vuejs" type="checkbox">
+                        <label for="vuejs">Vue Js</label>
+                    </div>
+                    <div>
+                        <input id="javascript" type="checkbox">
+                        <label for="javascript">JavaScript</label>
+                    </div>
+                </div>
+            </div>
+            <div class="projectImg">
+                <label for="image">Upload Image</label>
+                <div class="uploadBox">
+                    <label for="image">
+                        <p>Attach file</p>
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    <input type="file" id="image" hidden>
+                </div>
+            </div>
+            <div class="button1">
+                <button>Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- preview project -->
+<div class="main-containerBot">
+<h1>MY PROJECT</h1>
+
+<div id="preview-project" class="preview-project">
+    <div class="previewProject-container">
+        <div class="preImage">
+            <a href="index-project-detail.html">
+                <img src="assets/images/image1.jpg">
+            </a>
+        </div>
+        <div class="preTitle">
+            <p>Dumbways Mobile App - 2023</p>
+        </div>
+        <div class="preDuration">
+            <p>durasi : 3 bulan</p>
+        </div>
+        <div class="preDescription">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut enim ab cupiditate harum ratione temporibus optio, necessitatibus deleniti amet, sequi molestias blanditiis ad corrupti laborum suscipit maiores rem? Expedita, animi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, officiis.</p>
+        </div>
+        <div class="preTechnologies">
+            <i class="fa-brands fa-node-js"></i>
+            <i class="fa-brands fa-react"></i>
+            <i class="fa-brands fa-vuejs"></i>
+            <i class="fa-brands fa-square-js"></i>
+        </div>
+        <div class="button2">
+            <button><a href="index-project.html">edit</a></button>
+            <button>delete</button>
+        </div>
+    </div>
+
+    <div class="previewProject-container">
+        <div class="preImage">
+            <a href="index-project-detail.html">
+                <img src="assets/images/image2.jpg">
+            </a>
+        </div>
+        <div class="preTitle">
+            <p>Dumbways Mobile App - 2023</p>
+        </div>
+        <div class="preDuration">
+            <p>durasi : 3 bulan</p>
+        </div>
+        <div class="preDescription">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut enim ab cupiditate harum ratione temporibus optio, necessitatibus deleniti amet, sequi molestias blanditiis ad corrupti laborum suscipit maiores rem? Expedita, animi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, officiis.</p>
+        </div>
+        <div class="preTechnologies">
+            <i class="fa-brands fa-node-js"></i>
+            <i class="fa-brands fa-react"></i>
+            <i class="fa-brands fa-vuejs"></i>
+            <i class="fa-brands fa-square-js"></i>
+        </div>
+        <div class="button2">
+            <button><a href="index-project.html">edit</a></button>
+            <button>delete</button>
+        </div>
+    </div>
+
+    <div class="previewProject-container">
+        <div class="preImage">
+            <a href="index-project-detail.html">
+                <img src="assets/images/image3.jpg">
+            </a>
+        </div>
+        <div class="preTitle">
+            <p>Dumbways Mobile App - 2023</p>
+        </div>
+        <div class="preDuration">
+            <p>durasi : 3 bulan</p>
+        </div>
+        <div class="preDescription">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut enim ab cupiditate harum ratione temporibus optio, necessitatibus deleniti amet, sequi molestias blanditiis ad corrupti laborum suscipit maiores rem? Expedita, animi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, officiis.</p>
+        </div>
+        <div class="preTechnologies">
+            <i class="fa-brands fa-node-js"></i>
+            <i class="fa-brands fa-react"></i>
+            <i class="fa-brands fa-vuejs"></i>
+            <i class="fa-brands fa-square-js"></i>
+        </div>
+        <div class="button2">
+            <button><a href="index-project.html">edit</a></button>
+            <button>delete</button>
+        </div>
+    </div>
+
+    <div class="previewProject-container">
+        <div class="preImage">
+            <a href="index-project-detail.html">
+                <img src="assets/images/image4.jpg">
+            </a>
+        </div>
+        <div class="preTitle">
+            <p>Dumbways Mobile App - 2023</p>
+        </div>
+        <div class="preDuration">
+            <p>durasi : 3 bulan</p>
+        </div>
+        <div class="preDescription">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut enim ab cupiditate harum ratione temporibus optio, necessitatibus deleniti amet, sequi molestias blanditiis ad corrupti laborum suscipit maiores rem? Expedita, animi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, officiis.</p>
+        </div>
+        <div class="preTechnologies">
+            <i class="fa-brands fa-node-js"></i>
+            <i class="fa-brands fa-react"></i>
+            <i class="fa-brands fa-vuejs"></i>
+            <i class="fa-brands fa-square-js"></i>
+        </div>
+        <div class="button2">
+            <button><a href="index-project.html">edit</a></button>
+            <button>delete</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/project.js"></script>
+</body>
+
+</html>

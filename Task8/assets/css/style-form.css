@@ -1,0 +1,61 @@
+@media only screen and (max-width : 650px) {
+    #form-container {
+        margin: auto;
+        width: 80%;
+    }
+}
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    margin: 50px 0 30px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.form-container {
+    width: 400px;
+}
+
+.form-container div {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.form-container div label {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.form-container div input, select, textarea {
+    border-radius: 4px;
+    box-shadow: 10px 10px 50px rgb(194, 188, 188);
+    border-style: none;
+}
+
+.form-container div input, select {
+    height: 35px;
+}
+
+.form-container div textarea {
+    height: 70px;
+}
+
+.button1 {
+    display: flex;
+    align-items:flex-end;
+    padding: 20px 0;
+}
+
+.button1 button {
+    background-color: black;
+    color: white;
+    padding: 2px 20px; 
+    border-radius: 15px;
+    cursor: pointer;
+}

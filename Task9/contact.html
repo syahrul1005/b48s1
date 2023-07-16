@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact</title>
+    <link rel="stylesheet" href="assets/css/all.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/style-form.css">
+    <script src="https://kit.fontawesome.com/700d7e38d3.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav class="navTop">
+        <div class="nav-left">
+            <ul>
+                <li><a href="index.html"><img src="assets/images/dw.png"></a></li>
+                <li><a class="navWeb" href="index.html">Home</a></li>
+                <li><a class="navWeb" href="index-project.html">Blog</a></li>
+                <li><a class="navWeb" href="testimonial.html">Testimonial</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="contact.html"><b>Contact Me</b></a>
+            <button onclick="openNavBot()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    <div class="navBot" id="navBot">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index-project.html">Blog</a></li>
+            <li class="navActive"><a href="contact.html">Contact Me</a></li>
+            <li><a href="testimonial.html">Testimonial</a></li>
+        </ul>
+    </div>
+
+    <h1>GET IN TOUCH</h1>
+    
+    <form onsubmit="submitData(event)" id="form-container">
+        <div class="form-container">
+            <div>
+                <label>Name</label>
+                <input id="name">
+            </div>
+            <div>
+                <label>Email</label>
+                <input id="email">
+            </div>
+            <div>
+                <label>Phone Number</label>
+                <input id="phone-number">
+            </div>
+            <div>
+                <label>Subject</label>
+                <select id="subject">
+                    <option value="" hidden></option>
+                    <option>Let's Talk</option>
+                    <option>Let's Meet</option>
+                    <option>Call Me</option>
+                </select>
+            </div>
+            <div>
+                <label>Your Message</label>
+                <textarea id="message"></textarea>
+            </div>
+            <div class="button1">
+                <button>Submit</button>
+            </div>
+        </div>
+    </form>
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/form.js"></script>
+</body>
+</html>
