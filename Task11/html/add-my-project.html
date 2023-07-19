@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Add My Project</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/700d7e38d3.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid shadow bg-white">
+            <img class="navbar-brand logo" src="/assets/images/dw.png" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="addProject">Add My Project</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="testimonial">Testimonials</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <a href="contact" type="button" class="btn btn-dark">Contact Me</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    
+
+    <div class="container my-5 py-4" style="max-width: 540px;">
+        <form action="/addDataProject" method="POST" > <!--onsubmit="addBlog(event)" -->
+            <div class="mb-3">
+                <label for="name" class="form-label fw-bold p-1">Project Name</label>
+                <input type="text" class="form-control" id="name" name="title">
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="startDate" class="form-label fw-bold p-1">Start Date</label>
+                    <input type="date" class="form-control" id="startDate" name="startDate">
+                </div>
+                <div class="col">
+                    <label for="endDate" class="form-label fw-bold p-1">End Date</label>
+                    <input type="date" class="form-control" id="endDate" name="endDate">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label fw-bold p-1">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold p-1">Technologies</label>
+                <div class="row">
+                    <div class="col">
+                        <input class="form-check-input" type="checkbox" id="nodejs" name="checkbox1" value="Node Js">
+                        <label class="form-check-label" for="nodejs">Node Js</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="checkbox" id="reactjs" name="checkbox2" value="React Js">
+                        <label class="form-check-label" for="reactjs">React Js</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input class="form-check-input" type="checkbox" id="vuejs" name="checkbox3" value="Vue Js">
+                        <label class="form-check-label" for="vuejs">Vue Js</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="checkbox" id="javascript" name="checkbox4" value="JavaScript">
+                        <label class="form-check-label" for="javascript">JavaScript</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label fw-bold p-1">Upload Image</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" id="image">
+                    <label class="input-group-text" for="image"><i class="fa-solid fa-paperclip"></i></label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <button class="btn btn-dark px-4" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container-content shadow">
+        <div class="container d-flex justify-content-center my-5">
+            <div class="d-flex justify-content-center flex-wrap gap-4" style="max-width: 960px;" id="previewProject">
+
+                <!-- <div class="card shadow bg-body p-2" style="width: 18rem;">
+                    <a href="project-detail"><img src="/assets/images/image1.jpg" class="card-img-top object-fit-cover" style="max-height: 180px;"></a>
+                    <div class="card-body card-body d-flex flex-column">
+                        <h5 class="card-title m-0">Fox</h5>
+                        <p>durasi: 2 month</p>
+                        <p class="card-text">Some quick example text to build on the card
+                            title
+                            and make up the the card's content.</p>
+                        <div class="d-flex flex-column justify-content-between mt-auto">
+                            <div class="fs-3">
+                                <i class="fa-brands fa-node-js"></i>
+                                <i class="fa-brands fa-react"></i>
+                                <i class="fa-brands fa-vuejs"></i>
+                                <i class="fa-brands fa-square-js"></i>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-dark rounded btnEdit">edit</button>
+                                <button type="button" class="btn btn-dark rounded btnDelete">delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <!-- <script src="/assets/js/addProject.js"></script> -->
+</body>
+
+</html>
