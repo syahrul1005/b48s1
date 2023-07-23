@@ -41,7 +41,7 @@ func main() {
 	e.GET("/contact", contact)
 	e.GET("/testimonial", testimonial)
 	e.GET("/projectDetail/:id", projectDetail)
-	// e.GET("/formEditProject/:id", formEditProject)
+	e.GET("/formEditProject/:id", formEditProject)
 
 	// e.POST("/addDataProject", addDataProject)
 	// e.POST("/deleteProject/:id", deleteProject)
@@ -64,7 +64,7 @@ func home(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	var resultBlogs []Project
+	dataProjects = []Project{}
 	for dataBlogs.Next() {
 		var each = Project{}
 
@@ -88,11 +88,11 @@ func home(c echo.Context) error {
 			each.NodeJs = true
 		}
 
-		resultBlogs = append(resultBlogs, each)
+		dataProjects = append(dataProjects, each)
 	}
 
 	data := map[string]interface{}{
-		"Projects": resultBlogs,
+		"Projects": dataProjects,
 	}
 
 	return tmpl.Execute(c.Response(), data)
@@ -127,36 +127,40 @@ func checkValue(tech []string, object string) bool {
 }
 
 func projectDetail(c echo.Context) error {
-	id := c.Param("Id")
+	id := c.Param("id")
+
+	tmpl, err := template.ParseFiles("html/project-detail.html")
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
 
 	idToInt, _ := strconv.Atoi(id)
 
 	projectDetail := Project{}
 
 	for index, data := range dataProjects {
-
 		if index == idToInt {
 			projectDetail = Project{
-				Id:           data.Id,
-				Title:        data.Title,
-				Content:      data.Content,
-				Duration:     data.Duration,
-				StartDate:    data.StartDate,
-				EndDate:      data.EndDate,
-				Technologies: data.Technologies,
+				Id:         index,
+				Title:      data.Title,
+				StartDate:  data.StartDate,
+				EndDate:    data.EndDate,
+				Duration:   data.Duration,
+				Content:    data.Content,
+				ReactJs:    data.ReactJs,
+				NodeJs:     data.NodeJs,
+				JavaScript: data.JavaScript,
+				VueJs:      data.VueJs,
 			}
 		}
 	}
 
 	data := map[string]interface{}{
-		"id":      id,
-		"Project": projectDetail,
-	}
-
-	tmpl, err := template.ParseFiles("html/project-detail.html")
-
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err.Error())
+		"id":        idToInt,
+		"Project":   projectDetail,
+		"startDate": projectDetail.StartDate.Format("02 Jan 2006"),
+		"endDate":   projectDetail.EndDate.Format("02 Jan 2006"),
 	}
 
 	return tmpl.Execute(c.Response(), data)
@@ -190,6 +194,41 @@ func testimonial(c echo.Context) error {
 	}
 
 	return tmpl.Execute(c.Response(), nil)
+}
+
+func formEditProject(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	editProject := Project{}
+
+	for index, data := range dataProjects {
+		// index += 1
+		if id == index {
+			editProject = Project{
+				Id:         index,
+				Title:      data.Title,
+				Content:    data.Content,
+				Duration:   data.Duration,
+				StartDate:  data.StartDate,
+				EndDate:    data.EndDate,
+				NodeJs:     data.NodeJs,
+				ReactJs:    data.ReactJs,
+				VueJs:      data.VueJs,
+				JavaScript: data.JavaScript,
+			}
+		}
+	}
+
+	data := map[string]interface{}{
+		"Project": editProject,
+	}
+	var tmpl, err = template.ParseFiles("html/edit-project.html")
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	return tmpl.Execute(c.Response(), data)
 }
 
 // func addDataProject(c echo.Context) error {
@@ -234,41 +273,6 @@ func testimonial(c echo.Context) error {
 // 	dataProjects = append(dataProjects[:idToInt], dataProjects[idToInt+1:]...)
 
 // 	return c.Redirect(http.StatusMovedPermanently, "/")
-// }
-
-// func formEditProject(c echo.Context) error {
-// 	id, _ := strconv.Atoi(c.Param("id"))
-
-// 	editProject := Project{}
-
-// 	for index, data := range dataProjects {
-// 		// index += 1
-// 		if id == index {
-// 			editProject = Project{
-// 				Id:         index,
-// 				Title:      data.Title,
-// 				Content:    data.Content,
-// 				Duration:   data.Duration,
-// 				StartDate:  data.StartDate,
-// 				EndDate:    data.EndDate,
-// 				NodeJs:     data.NodeJs,
-// 				ReactJs:    data.ReactJs,
-// 				VueJs:      data.VueJs,
-// 				JavaScript: data.JavaScript,
-// 			}
-// 		}
-// 	}
-
-// 	data := map[string]interface{}{
-// 		"Project": editProject,
-// 	}
-// 	var tmpl, err = template.ParseFiles("html/edit-project.html")
-
-// 	if err != nil {
-// 		return c.JSON(http.StatusInternalServerError, err.Error())
-// 	}
-
-// 	return tmpl.Execute(c.Response(), data)
 // }
 
 // func editProject(c echo.Context) error {
