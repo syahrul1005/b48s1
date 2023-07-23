@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/700d7e38d3.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid shadow bg-white">
+            <img class="navbar-brand logo" src="/assets/images/dw.png" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/addProject">Add My Project</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/testimonial">Testimonials</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <a type="button" class="btn btn-dark" href="/contact">Contact Me</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container d-flex justify-content-center mb-5">
+        <div class="card shadow-lg bg-body m-5 p-3 rounded-3" style="max-width: 960px;">
+            <div class="row g-0">
+                <div class="col-md-8 d-flex justify-content-center align-items-center">
+                    <div class="card-body px-5">
+                        <h5 class="card-title">Hi Welcome to my hut</h5>
+                        <p class="card-text textDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quisquam consequuntur dolores nostrum, incidunt veniam eveniet? At adipisci deleniti, illo maxime nam suscipit, deserunt magnam quibusdam ipsa exercitationem voluptate porro, quam ipsam sequi aspernatur! Ab nihil aliquam cum quibusdam autem at, mollitia totam accusamus eius quis numquam optio, iusto minima!</p>
+                        <a type="button" class="btn btn-dark rounded-pill py-0 px-3" href="/contact">Contact</a>
+                        <a type="button" class="btn btn-link text-decoration-none text-reset" href="https://unsplash.com/photos/ghD1Znf8gps">download CV <i
+                                class="fa-solid fa-download"></i></a>
+                        <div class="d-flex align-items-center mt-3 fs-3 gap-3">
+                            <a class="icon-link text-decoration-none text-dark" href="#">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a class="icon-link text-decoration-none text-dark" href="#">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a class="icon-link text-decoration-none text-dark" href="#">
+                                <i class="fa-brands fa-square-facebook"></i>
+                            </a>
+                            <a class="icon-link text-decoration-none text-dark" href="#">
+                                <i class="fa-brands fa-square-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center shadow bg-body rounded-3 mx-auto my-4" style="max-width: fit-content;">
+                    <img src="/assets/images/man.jpg" class="img-fluid rounded-top-3" style="max-height: 300px;">
+                    <p class="text-center fw-bold m-0 pt-2">Radu Florin</p>
+                    <p class="text-center m-0 pb-3">Fullstack Developer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-content shadow">
+        <div class="container d-flex justify-content-center my-5">
+            <div class="d-flex justify-content-center flex-wrap gap-4" style="max-width: 960px;">
+                {{ range $index, $project := .Projects }}
+                <div class="card shadow bg-body p-2" style="width: 18rem;">
+                    <a href="projectDetail/{{$index}}"><img src="/assets/images/image1.jpg" class="card-img-top object-fit-cover" style="max-height: 180px;"></a>
+                    <div class="card-body card-body d-flex flex-column">
+                        <h5 class="card-title m-0">{{ $project.Title }}</h5>
+                        <p>durasi: {{ $project.Duration }}</p>
+                        <p class="card-text">{{ $project.Content }}</p>
+                        <div class="d-flex flex-column mt-auto icon">
+                            <div class="fs-3">
+                                {{if $project.NodeJs}}
+                                <i class="fa-brands fa-node-js"></i>
+                                {{end}} {{if $project.ReactJs}}
+                                <i class="fa-brands fa-react"></i>
+                                {{end}} {{if $project.VueJs}}
+                                <i class="fa-brands fa-vuejs"></i>
+                                {{end}} {{if $project.JavaScript}}
+                                <i class="fa-brands fa-square-js"></i>
+                                {{end}}
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <form action="/formEditProject/{{$index}}" method="get">
+                                    <button type="submit" class="btn btn-dark rounded btnEdit">edit</button>
+                                </form>
+                                <form action="/deleteProject/{{$index}}" method="post">
+                                    <button type="submit" class="btn btn-dark rounded btnDelete">delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+                <!-- <div class="card shadow bg-body p-2" style="width: 18rem;">
+                    <a href="projectDetail/2"><img src="/assets/images/image2.jpg" class="card-img-top object-fit-cover" style="max-height: 180px;"></a>
+                    <div class="card-body card-body d-flex flex-column">
+                        <h5 class="card-title m-0">Fox</h5>
+                        <p>durasi: 2 month</p>
+                        <p class="card-text">Some quick example text to build on the card
+                            title
+                            and make up the the card's content.</p>
+                        <div class="d-flex flex-column mt-auto">
+                            <div class="fs-3">
+                                <i class="fa-brands fa-node-js"></i>
+                                <i class="fa-brands fa-react"></i>
+                                <i class="fa-brands fa-vuejs"></i>
+                                <i class="fa-brands fa-square-js"></i>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-dark rounded btnEdit">edit</button>
+                                <button type="button" class="btn btn-dark rounded btnDelete">delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow bg-body p-2" style="width: 18rem;">
+                    <a href="projectDetail/3"><img src="/assets/images/image3.jpg" class="card-img-top object-fit-cover" style="max-height: 180px;"></a>
+                    <div class="card-body card-body d-flex flex-column">
+                        <h5 class="card-title m-0">Stork</h5>
+                        <p>durasi: 3 month</p>
+                        <p class="card-text">Some quick example text to build on the card
+                            title
+                            and make up the the card's content.</p>
+                        <div class="d-flex flex-column mt-auto">
+                            <div class="fs-3">
+                                <i class="fa-brands fa-node-js"></i>
+                                <i class="fa-brands fa-react"></i>
+                                <i class="fa-brands fa-vuejs"></i>
+                                <i class="fa-brands fa-square-js"></i>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-dark rounded btnEdit">edit</button>
+                                <button type="button" class="btn btn-dark rounded btnDelete">delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow bg-body p-2" style="width: 18rem;">
+                    <a href="projectDetail/4"><img src="/assets/images/image4.jpg" class="card-img-top object-fit-cover" style="max-height: 180px;"></a>
+                    <div class="card-body card-body d-flex flex-column">
+                        <h5 class="card-title m-0">Deer</h5>
+                        <p>durasi: 4 month</p>
+                        <p class="card-text">Some quick example text to build on the card
+                            title
+                            and make up the the card's content.</p>
+                        <div class="d-flex flex-column mt-auto">
+                            <div class="fs-3">
+                                <i class="fa-brands fa-node-js"></i>
+                                <i class="fa-brands fa-react"></i>
+                                <i class="fa-brands fa-vuejs"></i>
+                                <i class="fa-brands fa-square-js"></i>
+                            </div>
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-dark rounded btnEdit">edit</button>
+                                <button type="button" class="btn btn-dark rounded btnDelete">delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
