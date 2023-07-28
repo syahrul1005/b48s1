@@ -1,0 +1,23 @@
+.logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.container-content {
+    background-color: white;
+    padding: 20px 0;
+}
+
+.active {
+    color: black !important;
+    font-weight: bolder;
+}
+
+.textDescription {
+    text-align: justify !important;
+}
+
+.btnEdit, .btnDelete  {
+    width: 110px !important;
+}
