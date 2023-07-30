@@ -59,7 +59,7 @@ func home(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	dataProjects, errBlogs := connection.Conn.Query(context.Background(), "SELECT id, name, start_date, end_date, description, technologies, image FROM tb_projects")
+	dataProjects, errBlogs := connection.Conn.Query(context.Background(), "SELECT id, title, start_date, end_date, description, technologies, image FROM tb_projects")
 
 	if errBlogs != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
@@ -140,7 +140,7 @@ func projectDetail(c echo.Context) error {
 
 	projectDetail := Project{}
 
-	errQuery := connection.Conn.QueryRow(context.Background(), "SELECT * FROM public.tb_projects WHERE id=$1", idToInt).Scan(&projectDetail.Id, &projectDetail.Title, &projectDetail.StartDate, &projectDetail.EndDate, &projectDetail.Content, &projectDetail.Technologies, &projectDetail.Image)
+	errQuery := connection.Conn.QueryRow(context.Background(), "SELECT id, title, start_date, end_date, description, technologies, image FROM public.tb_projects WHERE id=$1", idToInt).Scan(&projectDetail.Id, &projectDetail.Title, &projectDetail.StartDate, &projectDetail.EndDate, &projectDetail.Content, &projectDetail.Technologies, &projectDetail.Image)
 
 	if errQuery != nil {
 		return c.JSON(http.StatusInternalServerError, errQuery.Error())
@@ -204,13 +204,42 @@ func testimonial(c echo.Context) error {
 func formEditProject(c echo.Context) error {
 	id := c.Param("id")
 
-	data := map[string]interface{}{
-		"Id": id,
-	}
 	tmpl, err := template.ParseFiles("html/edit-project.html")
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	idToInt, _ := strconv.Atoi(id)
+
+	projectDetail := Project{}
+
+	errQuery := connection.Conn.QueryRow(context.Background(), "SELECT id, title, start_date, end_date, description, technologies, image FROM public.tb_projects WHERE id=$1", idToInt).Scan(&projectDetail.Id, &projectDetail.Title, &projectDetail.StartDate, &projectDetail.EndDate, &projectDetail.Content, &projectDetail.Technologies, &projectDetail.Image)
+
+	if errQuery != nil {
+		return c.JSON(http.StatusInternalServerError, errQuery.Error())
+	}
+
+	projectDetail.Duration = countDuration(projectDetail.EndDate, projectDetail.StartDate)
+
+	if checkValue(projectDetail.Technologies, "ReactJs") {
+		projectDetail.ReactJs = true
+	}
+	if checkValue(projectDetail.Technologies, "JavaScript") {
+		projectDetail.JavaScript = true
+	}
+	if checkValue(projectDetail.Technologies, "VueJs") {
+		projectDetail.VueJs = true
+	}
+	if checkValue(projectDetail.Technologies, "NodeJs") {
+		projectDetail.NodeJs = true
+	}
+
+	data := map[string]interface{}{
+		"Id":        id,
+		"Project":   projectDetail,
+		"StartDate": projectDetail.StartDate.Format("2006-01-02"),
+		"EndDate":   projectDetail.EndDate.Format("2006-01-02"),
 	}
 
 	return tmpl.Execute(c.Response(), data)
@@ -230,7 +259,7 @@ func addDataProject(c echo.Context) error {
 	startDate, _ := time.Parse("2006-01-02", startdate)
 	endDate, _ := time.Parse("2006-01-02", enddate)
 
-	_, err := connection.Conn.Exec(context.Background(), "INSERT INTO tb_projects (name, start_date, end_date, description, technologies, image) VALUES ($1, $2, $3, $4, $5, $6)", title, startDate, endDate, description, []string{chkBox1, chkBox2, chkBox3, chkBox4}, "image.jpg")
+	_, err := connection.Conn.Exec(context.Background(), "INSERT INTO tb_projects (title, start_date, end_date, description, technologies, image) VALUES ($1, $2, $3, $4, $5, $6)", title, startDate, endDate, description, []string{chkBox1, chkBox2, chkBox3, chkBox4}, "image.jpg")
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
@@ -264,7 +293,7 @@ func editProject(c echo.Context) error {
 	startDate, _ := time.Parse("2006-01-02", startdate)
 	endDate, _ := time.Parse("2006-01-02", enddate)
 
-	_, err := connection.Conn.Exec(context.Background(), "UPDATE tb_projects SET name=$1, start_date=$2, end_date=$3, description=$4, technologies=$5, image=$6 WHERE id=$7", title, startDate, endDate, description, []string{chkBox1, chkBox2, chkBox3, chkBox4}, "image.jpg", id)
+	_, err := connection.Conn.Exec(context.Background(), "UPDATE tb_projects SET title=$1, start_date=$2, end_date=$3, description=$4, technologies=$5, image=$6 WHERE id=$7", title, startDate, endDate, description, []string{chkBox1, chkBox2, chkBox3, chkBox4}, "image.jpg", id)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())

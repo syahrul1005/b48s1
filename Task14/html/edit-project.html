@@ -25,7 +25,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/addProject">Add My Project</a>
                     </li>
                     <li class="nav-item">
@@ -46,41 +46,41 @@
             <input type="hidden" value="{{.Id}}" name="id" id="id">
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold p-1">Project Name</label>
-                <input type="text" class="form-control" id="name" name="title">
+                <input type="text" class="form-control" id="name" name="title" value="{{ .Project.Title }}">
             </div>
             <div class="row mb-3">
                 <div class="col">
                     <label for="startDate" class="form-label fw-bold p-1">Start Date</label>
-                    <input type="date" class="form-control" id="startDate" name="startDate">
+                    <input type="date" class="form-control" id="startDate" name="startDate" value="{{ .StartDate }}">
                 </div>
                 <div class="col">
                     <label for="endDate" class="form-label fw-bold p-1">End Date</label>
-                    <input type="date" class="form-control" id="endDate" name="endDate">
+                    <input type="date" class="form-control" id="endDate" name="endDate" value="{{ .EndDate }}">
                 </div>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label fw-bold p-1">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ .Project.Content }}</textarea>
             </div>
             <div class="mb-3">
                 <label class="form-label fw-bold p-1">Technologies</label>
                 <div class="row">
                     <div class="col">
-                        <input class="form-check-input" type="checkbox" id="nodejs" name="checkbox1" value="NodeJs">
+                        <input class="form-check-input" type="checkbox" id="nodejs" name="nodejs" value="NodeJs" {{if .Project.NodeJs }} checked {{end}}>
                         <label class="form-check-label" for="nodejs">Node Js</label>
                     </div>
                     <div class="col">
-                        <input class="form-check-input" type="checkbox" id="reactjs" name="checkbox2" value="ReactJs">
+                        <input class="form-check-input" type="checkbox" id="reactjs" name="reactjs" value="ReactJs" {{if .Project.ReactJs }} checked {{end}}>
                         <label class="form-check-label" for="reactjs">React Js</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input class="form-check-input" type="checkbox" id="vuejs" name="checkbox3" value="VueJs">
+                        <input class="form-check-input" type="checkbox" id="vuejs" name="vuejs" value="VueJs" {{if .Project.VueJs }} checked {{end}}>
                         <label class="form-check-label" for="vuejs">Vue Js</label>
                     </div>
                     <div class="col">
-                        <input class="form-check-input" type="checkbox" id="javascript" name="checkbox4" value="JavaScript">
+                        <input class="form-check-input" type="checkbox" id="javascript" name="javascript" value="JavaScript" {{if .Project.JavaScript }} checked {{end}}>
                         <label class="form-check-label" for="javascript">JavaScript</label>
                     </div>
                 </div>

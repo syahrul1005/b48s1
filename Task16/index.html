@@ -124,15 +124,15 @@
                 {{ range $project := .Projects }}
                 <div class="card shadow bg-body p-2" style="width: 18rem;">
                     <a href="projectDetail/{{ $project.Id }}" class="text-decoration-none text-reset">
-                    <img src="/assets/images/image{{ $project.Id }}.jpg" class="card-img-top object-fit-cover" style="max-height: 180px;">
+                    <img src="/uploads/{{ $project.Image }}" class="card-img-top object-fit-cover" style="max-height: 180px;">
                     <div class="card-body card-body d-flex flex-column">
-                        <h5 class="card-title m-0">{{ $project.Title }}</h5></a>
-                        <div class="d-flex justify-content-between timeContent">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h5 class="card-title m-0">{{ $project.Title }}</h5>
+                            <p class="m-0 text-end">{{ $project.Author }}</p>
+                        </div></a>
                             <p>durasi: {{ $project.Duration }}</p>
-                        </div>
-                        <p class="card-text">{{ $project.Content }}</p>
-                        <div class="d-flex flex-column mt-auto icon">
-                            <div class="fs-3">
+                        <p class="card-text" style="min-height: 100px;">{{ $project.Content }}</p>
+                        <div class="fs-3">
                                 {{if $project.NodeJs}}
                                 <i class="fa-brands fa-node-js"></i>
                                 {{end}} {{if $project.ReactJs}}
@@ -142,18 +142,27 @@
                                 {{end}} {{if $project.JavaScript}}
                                 <i class="fa-brands fa-square-js"></i>
                                 {{end}}
-                            </div>
-                            {{ if $.UserLoginSession.IsLogin }}
-                            <div class="d-flex justify-content-between mt-4">
-                                <form action="/formEditProject/{{ $project.Id }}" method="get">
-                                    <button type="submit" class="btn btn-dark rounded btnEdit">edit</button>
-                                </form>
-                                <form action="/deleteProject/{{ $project.Id }}" method="post">
-                                    <button type="submit" class="btn btn-dark rounded btnDelete">delete</button>
-                                </form>
-                            </div>
-                            {{ end }}
                         </div>
+                            {{ if $.UserLoginSession.IsLogin }}
+                                {{ if $.UserLoginSession.CekRole }}
+                                <div class="d-flex justify-content-between mt-4">
+                                    <form action="/formEditProject/{{ $project.Id }}" method="get">
+                                        <button type="submit" class="btn btn-dark rounded btnEdit">edit</button>
+                                    </form>
+                                    <form action="/deleteProject/{{ $project.Id }}" method="post">
+                                        <button type="submit" class="btn btn-dark rounded btnDelete">delete</button>
+                                    </form>
+                                </div>
+                                {{ else }}
+                                    {{ if $project.CekUserId }}
+                                    <div class="d-flex justify-content-center mt-4">
+                                        <form action="/formEditProject/{{ $project.Id }}" method="get">
+                                            <button type="submit" class="btn btn-dark rounded btnEdit">edit</button>
+                                        </form>
+                                    </div>
+                                    {{ end }}
+                                {{ end }}
+                            {{ end }}
                     </div>
                 </div>
                 {{ end }}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home</title>
+    <title>Add My Project</title>
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
@@ -30,7 +30,7 @@
                         <a class="nav-link" href="/addProject">Add Projects</a>
                     </li>
                     {{ end }}
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/testimonial">Testimonials</a>
                     </li>
                 </ul>
@@ -44,7 +44,7 @@
                 {{ else }}
                 <div class="d-flex align-items-center gap-3">
                     <a class="nav-link" href="/form-login">Login</a>
-                    <a class="nav-link" href="/form-register">Register</a>
+                    <a class="nav-link fw-bold" href="/form-register">Register</a>
                     <form class="d-flex">
                         <a type="button" class="btn btn-dark" href="/contact">Contact Me</a>
                     </form>
@@ -54,54 +54,47 @@
         </div>
     </nav>
 
-    <div class="d-flex justify-content-center align-items-center flex-column">
-        <h1 class="mt-5">My Testimonials</h1>
-        <h2 class="mt-4">Rating by Stars</h2>
-        <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
-            <button class="btn btn-dark" type="button" onclick="allTestimonial()">
-                All
-            </button>
-            <button class="btn btn-dark" type="button" onclick="filterTestimonial(1)">
-                1 <i class="fa-solid fa-star"></i>
-            </button>
-            <button class="btn btn-dark" type="button" onclick="filterTestimonial(2)">
-                2 <i class="fa-solid fa-star"></i>
-            </button>
-            <button class="btn btn-dark" type="button" onclick="filterTestimonial(3)">
-                3 <i class="fa-solid fa-star"></i>
-            </button>
-            <button class="btn btn-dark" type="button" onclick="filterTestimonial(4)">
-                4 <i class="fa-solid fa-star"></i>
-            </button>
-            <button class="btn btn-dark" type="button" onclick="filterTestimonial(5)">
-                5 <i class="fa-solid fa-star"></i>
-            </button>
-        </div>
+    <div class="container my-5 py-4" style="max-width: 540px;">
+        <form action="/register" method="POST" >
+            <h3 class="text-center mb-4">REGISTER YOUR ACCOUNT</h3>
+
+        {{ if .FlashMessage }}    
+        {{ if .FlashStatus }}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ .FlashMessage }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {{ else }}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ .FlashMessage }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {{ end }}
+        {{ end }}
+
+            <div class="mb-3">
+                <label for="name" class="form-label fw-bold p-1">Name</label>
+                <input type="text" class="form-control" id="name" name="name">
+                <input type="hidden" class="form-control" id="name" name="role" value="Member">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label fw-bold p-1">Email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword5" class="form-label form-label fw-bold p-1">Password</label>
+                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="password">
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <button class="btn btn-dark px-4 rounded-5" type="submit">Submit</button>
+            </div>
+        </form>
     </div>
 
-    <div class="container">
-        <div class="container d-flex justify-content-center my-5">
-            <div class="d-flex justify-content-center flex-wrap gap-4" id="testimonial" style="max-width: 960px;">
-                <!-- <div class="card shadow bg-body p-2" style="width: 18rem;">
-                    <img src="assets/images/image5.jpg" class="card-img-top object-fit-cover pb-2"
-                        style="max-width: 270px; max-height: 190px;">
-                    <div class="card-body p-1">
-                        <p class="card-text text-justify fst-italic w-75 " style="height: 60px;">"I Don't Want To Go"
-                        </p>
-                        <div class="text-end">
-                            <p class=" m-0">- Peter Parker</p>
-                            <p class=" m-0">5 <i class="fa-solid fa-star"></i></p>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    </div>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-    <script src="/assets/js/ajax.js"></script>
+    <!-- <script src="/assets/js/addProject.js"></script> -->
 </body>
 
 </html>
