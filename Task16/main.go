@@ -62,6 +62,7 @@ func main() {
 	e.Static("/uploads", "uploads")
 
 	e.GET("/", home)
+	e.GET("/myProject", myProject)
 	e.GET("/addProject", addProject)
 	e.GET("/contact", contact)
 	e.GET("/testimonial", testimonial)
@@ -90,7 +91,7 @@ func home(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	dataProjects, errBlogs := connection.Conn.Query(context.Background(), "SELECT tb_user.id, tb_user.role, tb_user.name, tb_projects.id, tb_projects.title, tb_projects.start_date, tb_projects.end_date, tb_projects.description, tb_projects.technologies, tb_projects.image, tb_projects.user_id  FROM tb_projects LEFT JOIN tb_user ON tb_projects.user_id = tb_user.id")
+	dataProjects, errBlogs := connection.Conn.Query(context.Background(), "SELECT tb_user.id, tb_user.role, tb_user.name, tb_projects.id, tb_projects.title, tb_projects.start_date, tb_projects.end_date, tb_projects.description, tb_projects.technologies, tb_projects.image, tb_projects.user_id  FROM tb_projects LEFT JOIN tb_user ON tb_projects.user_id = tb_user.id ORDER BY tb_user.name")
 
 	if errBlogs != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
@@ -251,6 +252,87 @@ func projectDetail(c echo.Context) error {
 		"endDate":          each.EndDate.Format("02 Jan 2006"),
 		"UserLoginSession": userLoginSession,
 	}
+
+	return tmpl.Execute(c.Response(), data)
+}
+
+func myProject(c echo.Context) error {
+	sess, errSess := session.Get("session", c)
+
+	if errSess != nil {
+		return c.JSON(http.StatusInternalServerError, errSess.Error())
+	}
+
+	var projectData []Project
+
+	if sess.Values["isLogin"] != true {
+		userLoginSession.IsLogin = false
+	} else {
+		userLoginSession.IsLogin = true
+		userLoginSession.Name = sess.Values["Name"].(string)
+
+		data, _ := connection.Conn.Query(context.Background(), "SELECT tb_user.id, tb_user.role, tb_user.name, tb_projects.id, tb_projects.title, tb_projects.start_date, tb_projects.end_date, tb_projects.description, tb_projects.technologies, tb_projects.image, tb_projects.user_id FROM tb_projects LEFT JOIN tb_user ON tb_projects.user_id = tb_user.id WHERE tb_projects.user_id = $1 ORDER BY tb_projects.title", sess.Values["Id"].(int))
+
+		for data.Next() {
+			var each = Project{}
+			var eachUser = User{}
+
+			err := data.Scan(&eachUser.Id, &eachUser.Role, &eachUser.Name, &each.Id, &each.Title, &each.StartDate, &each.EndDate, &each.Content, &each.Technologies, &each.Image, &each.UserId)
+			if err != nil {
+				return c.JSON(http.StatusInternalServerError, err.Error())
+			}
+
+			each.Duration = countDuration(each.EndDate, each.StartDate)
+			each.Author = eachUser.Name
+			each.GetRole = eachUser.Role
+
+			if checkValue(each.Technologies, "ReactJs") {
+				each.ReactJs = true
+			}
+			if checkValue(each.Technologies, "JavaScript") {
+				each.JavaScript = true
+			}
+			if checkValue(each.Technologies, "VueJs") {
+				each.VueJs = true
+			}
+			if checkValue(each.Technologies, "NodeJs") {
+				each.NodeJs = true
+			}
+			if sess.Values["Id"] == each.UserId {
+				each.CekUserId = true
+			}
+
+			projectData = append(projectData, each)
+		}
+	}
+
+	if sess.Values["Role"] != "Admin" {
+		userLoginSession.CekRole = false
+	} else {
+		userLoginSession.CekRole = true
+	}
+
+	flash := map[string]interface{}{
+		"FlashMessage": sess.Values["Message"],
+		"FlashStatus":  sess.Values["Status"],
+	}
+
+	delete(sess.Values, "Message")
+	delete(sess.Values, "Status")
+	sess.Save(c.Request(), c.Response())
+
+	data := map[string]interface{}{
+		"Projects":         projectData,
+		"Flash":            flash,
+		"UserLoginSession": userLoginSession,
+	}
+	var tmpl, err = template.ParseFiles("html/my-project.html")
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	// fmt.Println("role :", userLoginSession.CekRole)
 
 	return tmpl.Execute(c.Response(), data)
 }

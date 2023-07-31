@@ -27,7 +27,7 @@
                     </li>
                     {{ if .UserLoginSession.IsLogin }}
                     <li class="nav-item">
-                        <a class="nav-link" href="/addProject">Add Projects</a>
+                        <a class="nav-link" href="/myProject">My Projects</a>
                     </li>
                     {{ end }}
                     <li class="nav-item">
@@ -58,7 +58,7 @@
         <h1>{{ .Project.Title }}</h1>
         <div class="row mt-5 mx-auto" style="max-width: 690px;">
             <div class="col text-center">
-                <img src="/uploads/{{ .Project.Image }}" style="max-width: 400px;">
+                <img src="/uploads/{{.Project.Image}}" class="object-fit-cover" style="max-width: 400px; max-height: 270px;">
             </div>
             <div class="col my-auto mx-auto" style="max-width: 400px;">
                 <div class="top">
